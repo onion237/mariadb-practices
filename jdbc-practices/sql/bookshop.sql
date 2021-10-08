@@ -27,4 +27,15 @@ ENGINE = InnoDB;
 desc book;
 desc author;
 select * from book;
+select * from emaillist;
+delete from emaillist where no != 1;
 
+
+create table guestbook(
+	no int not null auto_increment,
+    name varchar(50) not null,
+    password varchar(50) not null,
+    message varchar(1000) not null,
+    reg_date datetime not null default now(),
+    primary key(no)
+);

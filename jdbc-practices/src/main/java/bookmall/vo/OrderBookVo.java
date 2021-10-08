@@ -5,6 +5,7 @@ public class OrderBookVo {
 	private Long bookNo;
 	private int qty;
 	private int price;
+	
 	public Long getOrderNo() {
 		return orderNo;
 	}
@@ -31,6 +32,7 @@ public class OrderBookVo {
 	}
 	@Override
 	public String toString() {
-		return "OrderBookVo [orderNo=" + orderNo + ", bookNo=" + bookNo + ", qty=" + qty + ", price=" + price + "]";
+		return "주문상세 [orderNo=" + orderNo + ", bookNo=" + bookNo + ", qty=" + qty + ", price=" + price + "]";
 	}
+	
 }

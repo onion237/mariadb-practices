@@ -49,7 +49,7 @@ public class MemberVo {
 
 	@Override
 	public String toString() {
-		return "MemberDao [no=" + no + ", email=" + email + ", password=" + password + ", name=" + name + ", phoneNo="
+		return "멤버 [no=" + no + ", email=" + email + ", password=" + password + ", name=" + name + ", phoneNo="
 				+ phoneNo + "]";
 	}
 

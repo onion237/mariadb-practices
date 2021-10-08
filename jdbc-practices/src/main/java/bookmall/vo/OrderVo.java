@@ -1,18 +1,29 @@
 package bookmall.vo;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderVo {
 	private Long no;
 	private String orderNo;
-	private Long memberNo;
-	private Integer payAmount;
-	private String shipAddr;
-	private String orderDate;
 	private String status;
+	private Integer payAmount;
 	
+	private Long memberNo;
+	private String shipAddr;
+	
+	private LocalDateTime orderDate;
+	private Date sqlDate;
+	private String formattedOrderDate;
+	
+	public String getFormattedOrderDate() {
+		return formattedOrderDate;
+	}
+	public void setFormattedOrderDate(String formattedOrderDate) {
+		this.formattedOrderDate = formattedOrderDate;
+	}
 	private List<OrderBookVo> orderBookList;
-	
 	
 	public List<OrderBookVo> getOrderBookList() {
 		return orderBookList;
@@ -21,6 +32,15 @@ public class OrderVo {
 		this.orderBookList = orderBookList;
 	}
 	
+	public Date getSqlDate() {
+		if(sqlDate == null) {
+			sqlDate = Date.valueOf(orderDate.toLocalDate());
+		}
+		return sqlDate;
+	}
+	public void setSqlDate(Date sqlDate) {
+		this.sqlDate = sqlDate;
+	}
 	private Integer calcPayAmount() {
 		int sum = 0;
 		for(OrderBookVo orderBook : orderBookList) {
@@ -48,10 +68,11 @@ public class OrderVo {
 	public void setShipAddr(String shipAddr) {
 		this.shipAddr = shipAddr;
 	}
-	public String getOrderDate() {
+	
+	public LocalDateTime getOrderDate() {
 		return orderDate;
 	}
-	public void setOrderDate(String orderDate) {
+	public void setOrderDate(LocalDateTime orderDate) {
 		this.orderDate = orderDate;
 	}
 	public String getStatus() {
@@ -74,9 +95,9 @@ public class OrderVo {
 	}
 	@Override
 	public String toString() {
-		return "OrderVo [no=" + no + ", orderNo=" + orderNo + ", memberNo=" + memberNo + ", payAmount=" + payAmount
-				+ ", shipAddr=" + shipAddr + ", orderDate=" + orderDate + ", status=" + status + "]";
+		return "주문 [no=" + no + ", orderNo=" + orderNo + ", status=" + status + ", payAmount=" + payAmount
+				+ ", memberNo=" + memberNo + ", shipAddr=" + shipAddr + ", formattedOrderDate=" + formattedOrderDate
+				+ "\n orderBookList=" + orderBookList + "]";
 	}
-
 	
 }

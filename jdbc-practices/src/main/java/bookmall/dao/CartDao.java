@@ -31,6 +31,7 @@ public class CartDao {
 					cart.setBookNo(rs.getLong("book_no"));
 					cart.setMemberNo(rs.getLong("member_no"));
 					cart.setQty(rs.getInt("qty"));
+					cart.setBookTitle(rs.getString("book.title"));
 					
 					result.add(cart);
 				}
@@ -56,7 +57,7 @@ public class CartDao {
 					cart.setBookNo(rs.getLong("book_no"));
 					cart.setMemberNo(rs.getLong("member_no"));
 					cart.setQty(rs.getInt("qty"));
-					
+					cart.setBookTitle(rs.getString("book.title"));
 					result.add(cart);
 				}
 			}

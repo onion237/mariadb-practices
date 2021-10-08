@@ -24,7 +24,7 @@ public class CategoryVo {
 	}
 	@Override
 	public String toString() {
-		return "CategoryVo [no=" + no + ", name=" + name + ", description=" + description + "]";
+		return "카테고리 [no=" + no + ", name=" + name + ", description=" + description + "]";
 	}
 
 	

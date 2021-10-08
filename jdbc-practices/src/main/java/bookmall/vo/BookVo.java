@@ -1,5 +1,7 @@
 package bookmall.vo;
 
+import java.util.Objects;
+
 public class BookVo {
 	private Long no;
 	private String title;
@@ -41,8 +43,22 @@ public class BookVo {
 	}
 	@Override
 	public String toString() {
-		return "BookVo [no=" + no + ", title=" + title + ", price=" + price + ", categoryNo=" + categoryNo
+		return "도서 [no=" + no + ", title=" + title + ", price=" + price + ", categoryNo=" + categoryNo
 				+ ", category=" + category + "]";
 	}
-	
+	@Override
+	public int hashCode() {
+		return Objects.hash(no);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BookVo other = (BookVo) obj;
+		return Objects.equals(no, other.no);
+	}
 }
