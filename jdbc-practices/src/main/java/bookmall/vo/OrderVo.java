@@ -11,11 +11,14 @@ public class OrderVo {
 	private Integer payAmount;
 	
 	private Long memberNo;
+	private String memberName;
+	private String memberEmail;
 	private String shipAddr;
 	
 	private LocalDateTime orderDate;
 	private Date sqlDate;
 	private String formattedOrderDate;
+	private List<OrderBookVo> orderBookList;
 	
 	public String getFormattedOrderDate() {
 		return formattedOrderDate;
@@ -23,8 +26,21 @@ public class OrderVo {
 	public void setFormattedOrderDate(String formattedOrderDate) {
 		this.formattedOrderDate = formattedOrderDate;
 	}
-	private List<OrderBookVo> orderBookList;
 	
+	
+	public String getMemberEmail() {
+		return memberEmail;
+	}
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
+	}
+	public String getMemberName() {
+		return memberName;
+	}
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+
 	public List<OrderBookVo> getOrderBookList() {
 		return orderBookList;
 	}
@@ -95,9 +111,10 @@ public class OrderVo {
 	}
 	@Override
 	public String toString() {
-		return "주문 [no=" + no + ", orderNo=" + orderNo + ", status=" + status + ", payAmount=" + payAmount
-				+ ", memberNo=" + memberNo + ", shipAddr=" + shipAddr + ", formattedOrderDate=" + formattedOrderDate
-				+ "\n orderBookList=" + orderBookList + "]";
+		return "주문 [no=" + no + ", 주문번호=" + orderNo + ", 결제금액=" + payAmount + ", 멤버번호=" + memberNo
+				+ ", 멤버이름=" + memberName + ", 멤버이메일=" + memberEmail + ", 배송지주소=" + shipAddr + ", 주문일자=" + formattedOrderDate
+				+ ", \n주문책목록=" + orderBookList + "]";
 	}
+	
 	
 }

@@ -6,7 +6,15 @@ public class CartVo {
 	private Integer qty;
 	
 	private String bookTitle;
+	private Integer bookPrice;
 	
+	
+	public Integer getBookPrice() {
+		return bookPrice;
+	}
+	public void setBookPrice(Integer bookPrice) {
+		this.bookPrice = bookPrice;
+	}
 	public String getBookTitle() {
 		return bookTitle;
 	}
@@ -34,8 +42,8 @@ public class CartVo {
 	}
 	@Override
 	public String toString() {
-		return "장바구니 [memberNo=" + memberNo + ", bookNo=" + bookNo + ", qty=" + qty + ", bookTitle=" + bookTitle
-				+ "]";
+		return "장바구니 [멤버번호=" + memberNo + ", 책번호=" + bookNo + ", 책제목=" + bookTitle + 
+				", 수량=" + qty + ", 가격=" + bookPrice + "]";
 	}
 	
 	

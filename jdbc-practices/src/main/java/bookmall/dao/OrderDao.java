@@ -162,8 +162,9 @@ public class OrderDao {
 
 	public List<OrderVo> findAll() {
 		List<OrderVo> result = new ArrayList<OrderVo>();
-		String selectOrder = "select no, order_no, member_no, pay_amount, ship_addr, date_format(order_date,'%Y-%m-%d %H:%i:%s') as d, status from `order` order by no desc";
-		String selectOrderBook = "select order_no, book_no, qty, price from order_book where order_no = ?";
+		String selectOrder = "select `order`.no as orderPK, order_no, member_no, member.name, member.email, pay_amount, ship_addr, date_format(order_date,'%Y-%m-%d %H:%i:%s') as d, status from `order` join member"
+				+ " on member.no = `order`.member_no order by `order`.no desc";
+		String selectOrderBook = "select order_no, book_no, book.title, qty, order_book.price from order_book join book on order_book.book_no = book.no where order_no = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet orderSet = null;
@@ -177,9 +178,11 @@ public class OrderDao {
 
 			while (orderSet.next()) {
 				order = new OrderVo();
-				order.setNo(orderSet.getLong("no"));
+				order.setNo(orderSet.getLong("orderPK"));
 				order.setOrderNo(orderSet.getString("order_no"));
 				order.setMemberNo(orderSet.getLong("member_no"));
+				order.setMemberName(orderSet.getString("member.name"));
+				order.setMemberEmail(orderSet.getString("member.email"));
 				order.setPayAmount(orderSet.getInt("pay_amount"));
 				order.setShipAddr(orderSet.getString("ship_addr"));
 				order.setFormattedOrderDate(orderSet.getString("d"));
@@ -195,6 +198,7 @@ public class OrderDao {
 					OrderBookVo ob = new OrderBookVo();
 					ob.setOrderNo(orderBookSet.getLong("order_no"));
 					ob.setBookNo(orderBookSet.getLong("book_no"));
+					ob.setBookTitle(orderBookSet.getString("book.title"));
 					ob.setPrice(orderBookSet.getInt("price"));
 					ob.setQty(orderBookSet.getInt("qty"));
 					

@@ -1,3 +1,4 @@
+use bookmall;
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `book`;
 DROP TABLE IF EXISTS `cart`;

@@ -19,7 +19,7 @@ public class CartDao {
 	//테스트용
 	public List<CartVo> findAll() {
 		List<CartVo> result = new ArrayList<>();
-		String sql = "select member_no, book_no, qty, book.title from cart join book on cart.book_no = book.no";
+		String sql = "select member_no, book_no, book.title, book.price, qty from cart join book on cart.book_no = book.no order by member_no";
 		
 		try(Connection conn = connectionProvider.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -30,8 +30,9 @@ public class CartDao {
 					cart = new CartVo();
 					cart.setBookNo(rs.getLong("book_no"));
 					cart.setMemberNo(rs.getLong("member_no"));
-					cart.setQty(rs.getInt("qty"));
+					cart.setBookPrice(rs.getInt("book.price"));
 					cart.setBookTitle(rs.getString("book.title"));
+					cart.setQty(rs.getInt("qty"));
 					
 					result.add(cart);
 				}
@@ -44,8 +45,8 @@ public class CartDao {
 	}
 	
 	public List<CartVo> findByMemberNo(long memberNo) {
-		List<CartVo> result = new ArrayList<>();		
-		String sql = "select member_no, book_no, qty, book.title from cart join book on cart.book_no = book.no where member_no = ?";
+		List<CartVo> result = new ArrayList<>();	
+		String sql = "select member_no, book_no, book.title, book.price, qty from cart join book on cart.book_no = book.no where member_no = ? order by member_no";
 		
 		try(Connection conn = connectionProvider.getConnection();
 				PreparedStatement pstmt = conn.prepareStatement(sql)){

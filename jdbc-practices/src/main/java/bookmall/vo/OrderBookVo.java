@@ -3,9 +3,17 @@ package bookmall.vo;
 public class OrderBookVo {
 	private Long orderNo;
 	private Long bookNo;
+	private String bookTitle;
 	private int qty;
 	private int price;
 	
+	
+	public String getBookTitle() {
+		return bookTitle;
+	}
+	public void setBookTitle(String bookTitle) {
+		this.bookTitle = bookTitle;
+	}
 	public Long getOrderNo() {
 		return orderNo;
 	}
@@ -32,7 +40,7 @@ public class OrderBookVo {
 	}
 	@Override
 	public String toString() {
-		return "주문상세 [orderNo=" + orderNo + ", bookNo=" + bookNo + ", qty=" + qty + ", price=" + price + "]";
+		return "주문상세 [orderNo=" + orderNo + ", 책번호=" + bookNo + ", 책제목=" + bookTitle + ", 주문수량=" + qty + ", 가격=" + price + "]";
 	}
 	
 }
